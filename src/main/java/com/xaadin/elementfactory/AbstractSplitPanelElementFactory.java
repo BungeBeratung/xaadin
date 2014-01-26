@@ -41,6 +41,6 @@ public class AbstractSplitPanelElementFactory extends AbstractDefaultElementFact
 	@Override
 	public boolean isClassSupportedForElementFactory(String classname) {
 		return classname.equals(HorizontalSplitPanel.class.getName())
-			|| classname.equals(VerticalSplitPanel.class.getName());
+				|| classname.equals(VerticalSplitPanel.class.getName());
 	}
 }

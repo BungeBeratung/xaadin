@@ -1,22 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <x:xaadin xmlns:x="http://xaadin.com/xmlns" xmlns:v="http://xaadin.com/controls/xmlns">
-    <v:HorizontalLayout v:width="100%" v:spacing="true" x:columnExpandRatio="0.0, 1.0">
-        <!-- Components -->
-        <v:Label v:id="label"/>
-        <v:TextField v:id="textField"/>
-        <v:Button v:id="button"/>
-        <v:ComboBox v:id="comboBox"/>
-        <v:Table v:id="table"/>
-        <v:ProgressBar v:id="progressBar"/>
-        <v:TextArea v:id="textArea"/>
-        <v:Panel v:id="panel"/>
-        <v:TabSheet v:id="tabSheet"/>
+	<v:HorizontalLayout v:width="100%" v:spacing="true" x:columnExpandRatio="0.0, 1.0">
+		<!-- Components -->
+		<v:Label v:id="label"/>
+		<v:TextField v:id="textField"/>
+		<v:Button v:id="button"/>
+		<v:ComboBox v:id="comboBox"/>
+		<v:Table v:id="table"/>
+		<v:ProgressBar v:id="progressBar"/>
+		<v:TextArea v:id="textArea"/>
+		<v:Panel v:id="panel"/>
+		<v:TabSheet v:id="tabSheet"/>
 
-        <!-- Layouts -->
-        <v:HorizontalLayout v:id="horizontalLayout"/>
-        <v:VerticalLayout v:id="verticalLayout"/>
-        <v:GridLayout v:id="gridLayout"/>
+		<!-- Layouts -->
+		<v:HorizontalLayout v:id="horizontalLayout"/>
+		<v:VerticalLayout v:id="verticalLayout"/>
+		<v:GridLayout v:id="gridLayout"/>
 
-    </v:HorizontalLayout>
+	</v:HorizontalLayout>
 </x:xaadin>

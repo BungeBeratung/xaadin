@@ -11,22 +11,22 @@ public class ParserTest {
 
 	public static final String PARSER_TEST_ALL_COMPONENTS = "ParserTestAllComponents.xml";
 
-    private Class[] TEST_COMPONENTS_TO_PARSE = new Class[]{
-            Label.class,
-            TextField.class,
-            Button.class,
-            ComboBox.class,
-            Table.class,
-            ProgressBar.class,
-            TextArea.class,
-            Panel.class,
-            TabSheet.class,
-            VerticalLayout.class,
-            HorizontalLayout.class,
-            GridLayout.class
-    };
+	private Class[] TEST_COMPONENTS_TO_PARSE = new Class[]{
+			Label.class,
+			TextField.class,
+			Button.class,
+			ComboBox.class,
+			Table.class,
+			ProgressBar.class,
+			TextArea.class,
+			Panel.class,
+			TabSheet.class,
+			VerticalLayout.class,
+			HorizontalLayout.class,
+			GridLayout.class
+	};
 
-    @Test
+	@Test
 	public void shouldParseAllComponentsInGivenXml() throws Exception {
 		URL url = ClassLoader.getSystemResource(PARSER_TEST_ALL_COMPONENTS);
 		VisualTreeNode visualTreeNode = Parser.parse(url, null);

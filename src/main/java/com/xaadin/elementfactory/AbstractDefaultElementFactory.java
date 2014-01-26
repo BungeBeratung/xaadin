@@ -41,7 +41,7 @@ public abstract class AbstractDefaultElementFactory implements ElementFactory {
 	protected Method findMethodForName(Class clazz, String methodName, int parameterCount) throws ElementFactoryException {
 		for (Method method : clazz.getMethods()) {
 			if (method.getName().equals(methodName)
-				&& (method.getParameterTypes().length == parameterCount)) {
+					&& (method.getParameterTypes().length == parameterCount)) {
 				return method;
 			}
 		}
@@ -49,7 +49,7 @@ public abstract class AbstractDefaultElementFactory implements ElementFactory {
 		// if no public method was found, try to find a private one
 		for (Method method : clazz.getDeclaredMethods()) {
 			if (method.getName().equals(methodName)
-				&& (method.getParameterTypes().length == parameterCount)) {
+					&& (method.getParameterTypes().length == parameterCount)) {
 				return method;
 			}
 		}
