@@ -1,4 +1,4 @@
 xaadin
 ======
 
-Create Vaadin UIs with XML files
+Simple creation of Vaadin GUI layouts using easy to read XML files
