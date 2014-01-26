@@ -11,4 +11,4 @@ Simple creation of Vaadin GUI layouts using easy to read XML files
 - (2014) Sven Bunge
 
 ## License
-This project is released under the Apache License Version 2.0 (s. license.txt).
+This project is released under the [Apache License Version 2.0](LICENSE).
