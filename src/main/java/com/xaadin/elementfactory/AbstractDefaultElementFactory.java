@@ -16,26 +16,22 @@ public abstract class AbstractDefaultElementFactory implements ElementFactory {
 
 	public Object createClass(Object parentObject, String classname) throws ElementFactoryException {
 		try {
-			Class clazz = null;
-			try {
-				clazz = Class.forName(classname);
-			} catch (ClassNotFoundException ignored) {
-			}
-
-			if (clazz == null) {
-				throw new ClassNotFoundException(classname);
-			}
-
-			return clazz.newInstance();
+			return Class.forName(classname).newInstance();
 		} catch (Exception e) {
 			throw new ElementFactoryException(e);
 		}
 	}
 
 	public void setItemStyles(Object component, String[] styles) {
-		if (component instanceof Component)
-			for (String style : styles)
+		if (component instanceof Component) {
+			for (String oldStyleName : ((Component) component).getStyleName().split(" ")) {
+				((Component) component).removeStyleName(oldStyleName);
+			}
+
+			for (String style : styles) {
 				((Component) component).addStyleName(style);
+			}
+		}
 	}
 
 	protected Method findMethodForName(Class clazz, String methodName, int parameterCount) throws ElementFactoryException {
