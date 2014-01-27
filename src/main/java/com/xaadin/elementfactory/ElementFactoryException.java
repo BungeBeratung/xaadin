@@ -9,8 +9,12 @@ public class ElementFactoryException extends XaadinException {
 		super(message);
 	}
 
-	public ElementFactoryException(Throwable cause) {
-		super(cause);
-	}
+    public ElementFactoryException(String message, Throwable cause) {
+        super(message, cause);
+    }
+
+    public ElementFactoryException(Throwable cause) {
+        super(cause);
+    }
 
 }

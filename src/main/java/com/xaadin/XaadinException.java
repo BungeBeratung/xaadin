@@ -10,4 +10,7 @@ public class XaadinException extends Exception {
 		super(cause);
 	}
 
+    public XaadinException(String message, Throwable cause) {
+        super(message, cause);
+    }
 }
