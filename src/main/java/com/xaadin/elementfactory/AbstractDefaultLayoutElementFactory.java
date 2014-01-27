@@ -14,10 +14,10 @@ public abstract class AbstractDefaultLayoutElementFactory extends AbstractDefaul
 			AbstractComponentContainer parentContainer = parent.getComponent();
 			parentContainer.addComponent(childComponent);
 
-			// TODO alignment
-			if (parentContainer instanceof AbstractOrderedLayout)
-				((AbstractOrderedLayout) parentContainer).setComponentAlignment(childComponent, Alignment.MIDDLE_LEFT);
-
+			if (parentContainer instanceof AbstractOrderedLayout) {
+                Alignment alignment = parseAlignment(child.getAdditionalParameter("alignment", "MIDDLE_LEFT"));
+				((AbstractOrderedLayout) parentContainer).setComponentAlignment(childComponent, alignment);
+            }
 		}
 	}
 
