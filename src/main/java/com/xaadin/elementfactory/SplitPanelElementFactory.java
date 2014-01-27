@@ -7,8 +7,8 @@ import com.vaadin.ui.HorizontalSplitPanel;
 import com.vaadin.ui.VerticalSplitPanel;
 import com.xaadin.VisualTreeNode;
 
-public class AbstractSplitPanelElementFactory extends AbstractDefaultElementFactory {
-	@Override
+public class SplitPanelElementFactory extends AbstractDefaultElementFactory {
+    @Override
 	public void addComponentToParent(VisualTreeNode parent, VisualTreeNode child) throws ElementFactoryException {
 		AbstractSplitPanel panel = parent.getComponent();
 

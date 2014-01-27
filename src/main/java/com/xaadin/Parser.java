@@ -34,8 +34,8 @@ public class Parser {
 		elementFactories.add(new MenuItemElementFactory());
 		elementFactories.add(new PanelElementFactory());
 		elementFactories.add(new AbstractOrderedLayoutElementFactory());
-		elementFactories.add(new AbstractSplitPanelElementFactory());
-		elementFactories.add(new TabSheetElementFactory());
+        elementFactories.add(new SplitPanelElementFactory());
+        elementFactories.add(new TabSheetElementFactory());
 		for (String namespace : Constants.DEFAULT_PACKAGE_NAMESPACES) {
 			elementFactories.add(new DefaultElementFactory(namespace));
 		}
