@@ -23,10 +23,12 @@ public class ParserTest {
 			TabSheet.class,
 			VerticalLayout.class,
 			HorizontalLayout.class,
-			GridLayout.class
-	};
+            GridLayout.class,
+            HorizontalSplitPanel.class,
+            VerticalSplitPanel.class
+    };
 
-	@Test
+    @Test
 	public void shouldParseAllComponentsInGivenXml() throws Exception {
 		URL url = ClassLoader.getSystemResource(PARSER_TEST_ALL_COMPONENTS);
 		VisualTreeNode visualTreeNode = Parser.parse(url, null);

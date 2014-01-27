@@ -12,9 +12,11 @@
 		<v:TextArea v:id="textArea"/>
 		<v:Panel v:id="panel"/>
 		<v:TabSheet v:id="tabSheet"/>
+        <v:HorizontalSplitPanel v:id="horizontalSplitPanel"/>
+        <v:VerticalSplitPanel v:id="verticalSplitPanel"/>
 
-		<!-- Layouts -->
-		<v:HorizontalLayout v:id="horizontalLayout"/>
+        <!-- Layouts -->
+        <v:HorizontalLayout v:id="horizontalLayout"/>
 		<v:VerticalLayout v:id="verticalLayout"/>
 		<v:GridLayout v:id="gridLayout"/>
 
