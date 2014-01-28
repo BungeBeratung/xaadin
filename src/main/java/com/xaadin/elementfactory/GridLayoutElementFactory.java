@@ -59,6 +59,13 @@ public class GridLayoutElementFactory extends AbstractDefaultElementFactory {
         int rowSpan = getIntFromVisualTreeNode("rowSpan", child);
         int colSpan = getIntFromVisualTreeNode("columnSpan", child);
 
+        if (rowSpan <= 0) {
+            rowSpan = 1;
+        }
+        if (colSpan <= 0) {
+            colSpan = 1;
+        }
+
         // use automatic ordering
         if ((row < 0) && (col < 0)) {
             int currentRow = getIntFromVisualTreeNode("GridLayoutElementFactory.currentRowIndex", parent);
@@ -72,9 +79,6 @@ public class GridLayoutElementFactory extends AbstractDefaultElementFactory {
 
             row = currentRow;
             col = currentCol;
-
-            if (colSpan < 1)
-                colSpan = 1;
 
             for (int i = 0; i < colSpan; i++) {
                 currentCol++;
@@ -97,10 +101,10 @@ public class GridLayoutElementFactory extends AbstractDefaultElementFactory {
         float[] rowExpandRatios = parseExpandRatios(parent.getAdditionalParameter("rowExpandRatio", ""));
         float[] columnExpandRatios = parseExpandRatios(parent.getAdditionalParameter("columnExpandRatio", ""));
 
-        if (row >= gridLayout.getRows())
-            gridLayout.setRows(row + 1);
-        if (col >= gridLayout.getColumns())
-            gridLayout.setColumns(col + 1);
+        if ((row + (rowSpan - 1)) >= gridLayout.getRows())
+            gridLayout.setRows(row + (rowSpan - 1) + 1);
+        if ((col + (colSpan - 1)) >= gridLayout.getColumns())
+            gridLayout.setColumns(col + (colSpan - 1) + 1);
 
         Component component = child.getComponent();
         if ((rowSpan > 1) || (colSpan > 1)) {
