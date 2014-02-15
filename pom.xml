@@ -14,7 +14,7 @@
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 
 		<!-- Dependencies -->
-		<guava.version>16.0</guava.version>
+		<guava.version>16.0.1</guava.version>
 
 		<slf4j.version>1.7.5</slf4j.version>
 		<servlet-api.version>3.0.1</servlet-api.version>
@@ -173,22 +173,24 @@
 				</exclusion>
 			</exclusions>
 		</dependency>
-		<dependency>
+<!--		<dependency>
 			<groupId>com.vaadin</groupId>
 			<artifactId>vaadin-client-compiled</artifactId>
 			<version>${vaadin.version}</version>
+			<scope>test</scope>
 		</dependency>
 		<dependency>
 			<groupId>com.vaadin</groupId>
 			<artifactId>vaadin-client</artifactId>
 			<version>${vaadin.version}</version>
-			<scope>provided</scope>
+			<scope>test</scope>
 		</dependency>
 		<dependency>
 			<groupId>com.vaadin</groupId>
 			<artifactId>vaadin-themes</artifactId>
 			<version>${vaadin.version}</version>
-		</dependency>
+			<scope>test</scope>
+		</dependency>-->
 
 		<dependency>
 			<groupId>org.jdom</groupId>
