@@ -23,7 +23,7 @@ public class DefaultElementFactory extends AbstractDefaultLayoutElementFactory {
 			}
 		}
 
-		return true;
+		return false;
 	}
 
 }
