@@ -15,8 +15,10 @@
 		<tabSheet id="tabSheet"/>
 		<horizontalSplitPanel id="horizontalSplitPanel"/>
 		<verticalSplitPanel id="verticalSplitPanel"/>
+        <inlineDateField id="inlineDateField"/>
+        <dateField id="dateField"/>
 
-		<!-- Layouts -->
+        <!-- Layouts -->
 		<horizontalLayout id="horizontalLayout"/>
 		<verticalLayout id="verticalLayout"/>
 		<gridLayout id="gridLayout"/>

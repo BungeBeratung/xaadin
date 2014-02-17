@@ -3,7 +3,7 @@ package com.xaadin;
 import com.vaadin.ui.*;
 
 /**
- * Created by Hendrik Jürgens on 27.01.14.
+ * Created by Hendrik Jürgens
  */
 public class TestConstants {
 
@@ -21,7 +21,9 @@ public class TestConstants {
             HorizontalLayout.class,
             GridLayout.class,
             HorizontalSplitPanel.class,
-            VerticalSplitPanel.class
-    };
+			VerticalSplitPanel.class,
+			DateField.class,
+			InlineDateField.class
+	};
 
 }
