@@ -9,7 +9,6 @@ import org.jdom2.Document;
 import org.jdom2.Element;
 import org.jdom2.Namespace;
 import org.jdom2.input.SAXBuilder;
-import org.jdom2.input.sax.XMLReaderJDOMFactory;
 import org.jdom2.input.sax.XMLReaders;
 
 import java.io.*;
@@ -35,6 +34,7 @@ public class Parser {
 		elementFactories.add(new AbstractOrderedLayoutElementFactory());
 		elementFactories.add(new SplitPanelElementFactory());
 		elementFactories.add(new TabSheetElementFactory());
+		elementFactories.add(new DateFieldElementFactory());
 		for (String namespace : Constants.DEFAULT_PACKAGE_NAMESPACES) {
 			elementFactories.add(new DefaultElementFactory(namespace));
 		}
