@@ -113,8 +113,16 @@ public abstract class AbstractDefaultElementFactory implements ElementFactory {
 			invokeMethod(method, target, Double.parseDouble(value));
 		} else if (method.getParameterTypes()[0].equals(boolean.class) || method.getParameterTypes()[0].equals(Boolean.class)) {
 			invokeMethod(method, target, Boolean.parseBoolean(value));
-		} else {
-			invokeMethod(method, target, value);
+        } else if (method.getParameterTypes()[0].isEnum()) {
+            Object[] enumValues = method.getParameterTypes()[0].getEnumConstants();
+            for (Object enumValue : enumValues) {
+                if (enumValue.toString().equals(value)) {
+                    invokeMethod(method, target, enumValue);
+                    break;
+                }
+            }
+        } else {
+            invokeMethod(method, target, value);
 		}
 	}
 

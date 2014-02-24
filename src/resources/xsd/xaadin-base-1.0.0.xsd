@@ -108,11 +108,13 @@
     <xs:element name="inlineDateField">
         <xs:complexType>
             <xs:attribute name="id" use="required"/>
-        </xs:complexType>
+			<xs:attribute name="resolution"/>
+		</xs:complexType>
     </xs:element>
     <xs:element name="dateField">
         <xs:complexType>
             <xs:attribute name="id" use="required"/>
-        </xs:complexType>
+			<xs:attribute name="resolution"/>
+		</xs:complexType>
     </xs:element>
 </xs:schema>

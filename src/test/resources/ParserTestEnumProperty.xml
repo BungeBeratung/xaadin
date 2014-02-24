@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xaadin xmlns="http://xaadin.com/base/1.0.0"
+		schemaLocation="http://xaadin.com/base/1.0.0 http://xaadin.com/xsd/xaadin-base-1.0.0.xsd">
+
+	<horizontalLayout width="100%" spacing="true" columnExpandRatio="0.0, 1.0">
+		<dateField id="dateFieldSecond" resolution="SECOND"/>
+		<dateField id="dateFieldMonth" resolution="MONTH"/>
+	</horizontalLayout>
+</xaadin>

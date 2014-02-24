@@ -34,7 +34,6 @@ public class Parser {
 		elementFactories.add(new AbstractOrderedLayoutElementFactory());
 		elementFactories.add(new SplitPanelElementFactory());
 		elementFactories.add(new TabSheetElementFactory());
-		elementFactories.add(new DateFieldElementFactory());
 		for (String namespace : Constants.DEFAULT_PACKAGE_NAMESPACES) {
 			elementFactories.add(new DefaultElementFactory(namespace));
 		}
@@ -171,9 +170,9 @@ public class Parser {
 			// default xaadin attributes have no namespace
 			if (attribute.getName().equals(Constants.DEFAULT_STYLE_PROPERTY_NAME)) {
 				factory.setItemStyles(component, attribute.getValue().split(" "));
-			} else  {
-				try {
-					factory.setProperty(component, attribute.getName(), attribute.getValue());
+            } else {
+                try {
+                    factory.setProperty(component, attribute.getName(), attribute.getValue());
 				} catch (ElementFactoryException e) {
 					// retry - set parameter as additional parameter with the factory (for GridLayout etc)
 					parentNode.setAdditionalParameter(attribute.getName(), attribute.getValue());
