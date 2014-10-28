@@ -8,6 +8,8 @@
         <xs:attribute name="expandRatio" type="xs:double"/>
         <xs:attribute name="alignment" type="enum_alignment"/>
 
+        <xs:attribute name="tabSheet.caption"/>
+
         <xs:attribute name="grid.row" type="xs:positiveInteger"/>
         <xs:attribute name="grid.column" type="xs:positiveInteger"/>
         <xs:attribute name="grid.rowSpan" type="xs:positiveInteger"/>
@@ -26,6 +28,14 @@
                 <xs:attribute name="readOnly" type="xs:boolean"/>
                 <xs:attribute name="styleName"/>
                 <xs:attribute name="visible" type="xs:boolean"/>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="class_abstractEmbedded">
+        <xs:complexContent>
+            <xs:extension base="class_abstractComponent">
+                <xs:attribute name="alternateText"/>
             </xs:extension>
         </xs:complexContent>
     </xs:complexType>
@@ -277,6 +287,12 @@
         </xs:complexContent>
     </xs:complexType>
 
+    <xs:complexType name="class_image">
+        <xs:complexContent>
+            <xs:extension base="class_abstractEmbedded"/>
+        </xs:complexContent>
+    </xs:complexType>
+
     <xs:complexType name="class_textArea">
         <xs:complexContent>
             <xs:extension base="class_abstractTextField">
@@ -376,7 +392,6 @@
             <xs:element ref="button"/>
             <xs:element ref="comboBox"/>
             <xs:element ref="label"/>
-            <xs:element ref="panel"/>
             <xs:element ref="progressBar"/>
             <xs:element ref="horizontalSplitPanel"/>
             <xs:element ref="verticalSplitPanel"/>
@@ -390,6 +405,7 @@
             <xs:element ref="dateField"/>
             <xs:element ref="popupDateField"/>
             <xs:element ref="inlineDateField"/>
+            <xs:element ref="image"/>
         </xs:choice>
     </xs:group>
 
@@ -399,6 +415,7 @@
             <xs:element ref="horizontalLayout"/>
             <xs:element ref="gridLayout"/>
             <xs:element ref="tabSheet"/>
+            <xs:element ref="panel"/>
             <xs:element ref="include"/>
         </xs:choice>
     </xs:group>
@@ -436,6 +453,7 @@
     <xs:element name="progressBar" type="class_progressBar"/>
     <xs:element name="textArea" type="class_textArea"/>
     <xs:element name="tree" type="class_tree"/>
+    <xs:element name="image" type="class_image"/>
 
     <xs:element name="horizontalSplitPanel" type="class_horizontalSplitPanel"/>
     <xs:element name="verticalSplitPanel" type="class_verticalSplitPanel"/>
