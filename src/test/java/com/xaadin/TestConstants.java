@@ -23,7 +23,8 @@ public class TestConstants {
             HorizontalSplitPanel.class,
 			VerticalSplitPanel.class,
 			DateField.class,
-			InlineDateField.class
+			InlineDateField.class,
+			Tree.class
 	};
 
 }

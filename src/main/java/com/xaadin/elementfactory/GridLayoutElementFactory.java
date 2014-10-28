@@ -54,12 +54,12 @@ public class GridLayoutElementFactory extends AbstractDefaultElementFactory {
 
         GridLayout gridLayout = parent.getComponent();
 
-        int row = getIntFromVisualTreeNode("row", child);
-        int col = getIntFromVisualTreeNode("column", child);
-        int rowSpan = getIntFromVisualTreeNode("rowSpan", child);
-        int colSpan = getIntFromVisualTreeNode("columnSpan", child);
+		int row = getIntFromVisualTreeNode("grid.row", child);
+		int col = getIntFromVisualTreeNode("grid.column", child);
+		int rowSpan = getIntFromVisualTreeNode("grid.rowSpan", child);
+		int colSpan = getIntFromVisualTreeNode("grid.columnSpan", child);
 
-        if (rowSpan <= 0) {
+		if (rowSpan <= 0) {
             rowSpan = 1;
         }
         if (colSpan <= 0) {

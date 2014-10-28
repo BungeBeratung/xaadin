@@ -2,13 +2,14 @@
 <xaadin xmlns="http://xaadin.com/base/1.0.0"
 				schemaLocation="http://xaadin.com/base/1.0.0 http://xaadin.com/xsd/xaadin-base-1.0.0.xsd">
 
-	<horizontalLayout width="100%" spacing="true" columnExpandRatio="0.0, 1.0">
-		<!-- Components -->
+
+    <horizontalLayout id="layout0" width="100%" spacing="true" expandRatio="0.0, 1.0">
+        <!-- Components -->
 		<label id="label"/>
 		<textField id="textField"/>
 		<button id="button"/>
-		<comboBox id="comboBox"/>
-		<table id="table"/>
+        <comboBox id="comboBox"/>xx
+        <table id="table"/>
 		<progressBar id="progressBar"/>
 		<textArea id="textArea"/>
 		<panel id="panel"/>
@@ -17,9 +18,10 @@
 		<verticalSplitPanel id="verticalSplitPanel"/>
         <inlineDateField id="inlineDateField"/>
         <dateField id="dateField"/>
+        <tree id="tree"/>
 
         <!-- Layouts -->
-		<horizontalLayout id="horizontalLayout"/>
+        <horizontalLayout id="horizontalLayout"/>
 		<verticalLayout id="verticalLayout"/>
 		<gridLayout id="gridLayout"/>
 	</horizontalLayout>

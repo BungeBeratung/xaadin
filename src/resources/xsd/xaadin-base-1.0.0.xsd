@@ -2,119 +2,442 @@
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified"
            targetNamespace="http://xaadin.com/base/1.0.0"
            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+
+    <!-- type hierarchy -->
+    <xs:complexType name="xaadin_default_attributes">
+        <xs:attribute name="expandRatio" type="xs:double"/>
+        <xs:attribute name="alignment" type="enum_alignment"/>
+
+        <xs:attribute name="grid.row" type="xs:positiveInteger"/>
+        <xs:attribute name="grid.column" type="xs:positiveInteger"/>
+        <xs:attribute name="grid.rowSpan" type="xs:positiveInteger"/>
+        <xs:attribute name="grid.columnSpan" type="xs:positiveInteger"/>
+    </xs:complexType>
+
+    <xs:complexType name="class_abstractComponent">
+        <xs:complexContent>
+            <xs:extension base="xaadin_default_attributes">
+                <xs:attribute name="id"/>
+                <xs:attribute name="caption" type="xs:string"/>
+                <xs:attribute name="enabled" type="xs:boolean"/>
+                <xs:attribute name="width"/>
+                <xs:attribute name="height"/>
+                <xs:attribute name="immediate" type="xs:boolean"/>
+                <xs:attribute name="readOnly" type="xs:boolean"/>
+                <xs:attribute name="styleName"/>
+                <xs:attribute name="visible" type="xs:boolean"/>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="class_abstractComponentContainer">
+        <xs:complexContent>
+            <xs:extension base="class_abstractComponent"/>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="class_AbstractSplitPanel">
+        <xs:complexContent>
+            <xs:extension base="class_abstractComponentContainer">
+                <xs:sequence minOccurs="0" maxOccurs="2">
+                    <xs:choice>
+                        <xs:group ref="allComponents"/>
+                        <xs:group ref="allContainers"/>
+                    </xs:choice>
+                </xs:sequence>
+                <xs:attribute name="splitPosition" type="xs:float"/>
+                <xs:attribute name="locked" type="xs:boolean"/>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="class_horizontalSplitPanel">
+        <xs:complexContent>
+            <xs:extension base="class_AbstractSplitPanel"/>
+        </xs:complexContent>
+    </xs:complexType>
+    <xs:complexType name="class_verticalSplitPanel">
+        <xs:complexContent>
+            <xs:extension base="class_AbstractSplitPanel"/>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="class_abstractLayout">
+        <xs:complexContent>
+            <xs:extension base="class_abstractComponentContainer">
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="class_abstractField">
+        <xs:complexContent>
+            <xs:extension base="class_abstractComponent">
+                <xs:attribute name="validationVisible" type="xs:boolean"/>
+                <xs:attribute name="required" type="xs:boolean"/>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="class_abstractField_string">
+        <xs:complexContent>
+            <xs:extension base="class_abstractField">
+                <xs:attribute name="value"/>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="class_abstractField_float">
+        <xs:complexContent>
+            <xs:extension base="class_abstractField">
+                <xs:attribute name="value" type="xs:float"/>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="class_abstractField_date">
+        <xs:complexContent>
+            <xs:extension base="class_abstractField">
+                <xs:attribute name="value" type="xs:dateTime"/>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="class_abstractField_boolean">
+        <xs:complexContent>
+            <xs:extension base="class_abstractField">
+                <xs:attribute name="value" type="xs:boolean"/>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="class_dateField">
+        <xs:complexContent>
+            <xs:extension base="class_abstractField_date">
+                <xs:attribute name="dateFormat"/>
+                <xs:attribute name="lenient" type="xs:boolean"/>
+                <xs:attribute name="resolution" type="enum_resolution"/>
+                <xs:attribute name="showISOWeekNumbers" type="xs:boolean"/>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="class_inlineDateField">
+        <xs:complexContent>
+            <xs:extension base="class_dateField"/>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="class_popupDateField">
+        <xs:complexContent>
+            <xs:extension base="class_dateField">
+                <xs:attribute name="testFieldEnabled" type="xs:boolean"/>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="class_progressBar">
+        <xs:complexContent>
+            <xs:extension base="class_abstractField_float">
+                <xs:attribute name="indeterminate" type="xs:boolean"/>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="class_abstractSelect">
+        <xs:complexContent>
+            <xs:extension base="class_abstractField">
+                <xs:attribute name="itemCaptionMode" type="enum_itemCaptionMode"/>
+                <xs:attribute name="multiSelect" type="xs:boolean"/>
+                <xs:attribute name="newItemsAllowed" type="xs:boolean"/>
+                <xs:attribute name="nullSelectionAllowed" type="xs:boolean"/>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="class_abstractTextField">
+        <xs:complexContent>
+            <xs:extension base="class_abstractField_string">
+                <xs:attribute name="nullRepresentation"/>
+                <xs:attribute name="nullSettingAllowed" type="xs:boolean"/>
+                <xs:attribute name="maxLength" type="xs:positiveInteger"/>
+                <xs:attribute name="textChangeTimeout" type="xs:positiveInteger"/>
+                <xs:attribute name="testChangeEventMode" type="enum_textChangeEventMode"/>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="class_abstractOrderedLayout">
+        <xs:complexContent>
+            <xs:extension base="class_abstractLayout">
+                <xs:attribute name="spacing"/>
+                <xs:attribute name="margin" type="xs:boolean"/>
+                <xs:attribute name="defaultComponentAlignment" type="enum_alignment"/>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="class_AbstractSingleComponentContainer">
+        <xs:complexContent>
+            <xs:extension base="class_abstractComponent">
+                <xs:choice minOccurs="0" maxOccurs="1">
+                    <xs:group ref="allComponents"/>
+                    <xs:group ref="allContainers"/>
+                </xs:choice>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="class_horizontalLayout">
+        <xs:complexContent>
+            <xs:extension base="class_abstractOrderedLayout">
+                <xs:sequence>
+                    <xs:choice>
+                        <xs:group ref="allComponents"/>
+                        <xs:group ref="allContainers"/>
+                    </xs:choice>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="class_verticalLayout">
+        <xs:complexContent>
+            <xs:extension base="class_abstractOrderedLayout">
+                <xs:sequence>
+                    <xs:choice>
+                        <xs:group ref="allComponents"/>
+                        <xs:group ref="allContainers"/>
+                    </xs:choice>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="class_tabSheet">
+        <xs:complexContent>
+            <xs:extension base="class_abstractComponentContainer">
+                <xs:sequence>
+                    <xs:choice>
+                        <xs:group ref="allComponents"/>
+                        <xs:group ref="allContainers"/>
+                    </xs:choice>
+                </xs:sequence>
+                <xs:attribute name="selectedTab" type="xs:positiveInteger"/>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="class_panel">
+        <xs:complexContent>
+            <xs:extension base="class_AbstractSingleComponentContainer">
+                <xs:attribute name="scrollLeft" type="xs:integer"/>
+                <xs:attribute name="scrollTop" type="xs:integer"/>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="class_button">
+        <xs:complexContent>
+            <xs:extension base="class_abstractComponent">
+                <xs:attribute name="disableOnClick" type="xs:boolean"/>
+
+                <xs:attribute name="onClick"/>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="class_gridLayoutType">
+        <xs:complexContent>
+            <xs:extension base="class_abstractLayout">
+                <xs:sequence>
+                    <xs:choice>
+                        <xs:group ref="allComponents"/>
+                        <xs:group ref="allContainers"/>
+                    </xs:choice>
+                </xs:sequence>
+                <xs:attribute name="columnExpandRatio"/>
+                <xs:attribute name="rowExpandRatio"/>
+                <xs:attribute name="columns" type="xs:positiveInteger"/>
+                <xs:attribute name="rows" type="xs:positiveInteger"/>
+                <xs:attribute name="spacing" type="xs:boolean"/>
+            </xs:extension>
+
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="class_label">
+        <xs:complexContent>
+            <xs:extension base="class_abstractComponent"/>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="class_textField">
+        <xs:complexContent>
+            <xs:extension base="class_abstractTextField"/>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="class_textArea">
+        <xs:complexContent>
+            <xs:extension base="class_abstractTextField">
+                <xs:attribute name="rows" type="xs:positiveInteger"/>
+                <xs:attribute name="wordwrap" type="xs:boolean"/>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="class_checkBox">
+        <xs:complexContent>
+            <xs:extension base="class_abstractField_boolean"/>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="class_comboBox">
+        <xs:complexContent>
+            <xs:extension base="class_abstractSelect"/>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="class_tree">
+        <xs:complexContent>
+            <xs:extension base="class_abstractSelect">
+                <xs:attribute name="multiSelectMode" type="enum_multiSelectMode"/>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="class_table">
+        <xs:complexContent>
+            <xs:extension base="class_abstractSelect">
+                <xs:attribute name="selectable" type="xs:boolean"/>
+                <xs:attribute name="footerVisible" type="xs:boolean"/>
+                <xs:attribute name="pageLength" type="xs:positiveInteger"/>
+                <xs:attribute name="sortAscending" type="xs:boolean"/>
+                <xs:attribute name="sortEnabled" type="xs:boolean"/>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <!-- enumeration types -->
+    <xs:simpleType name="enum_alignment">
+        <xs:restriction>
+            <xs:enumeration value="BOTTOM_CENTER"/>
+            <xs:enumeration value="BOTTOM_LEFT"/>
+            <xs:enumeration value="BOTTOM_RIGHT"/>
+            <xs:enumeration value="MIDDLE_CENTER"/>
+            <xs:enumeration value="MIDDLE_LEFT"/>
+            <xs:enumeration value="MIDDLE_RIGHT"/>
+            <xs:enumeration value="TOP_CENTER"/>
+            <xs:enumeration value="TOP_LEFT"/>
+            <xs:enumeration value="TOP_RIGHT"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="enum_textChangeEventMode">
+        <xs:restriction>
+            <xs:enumeration value="LAZY"/>
+            <xs:enumeration value="TIMEOUT"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="enum_itemCaptionMode">
+        <xs:restriction>
+            <xs:enumeration value="EXPLICIT"/>
+            <xs:enumeration value="EXPLICIT_DEFAULTS_ID"/>
+            <xs:enumeration value="ICON_ONLY"/>
+            <xs:enumeration value="ID"/>
+            <xs:enumeration value="INDEX"/>
+            <xs:enumeration value="ITEM"/>
+            <xs:enumeration value="PROPERTY"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="enum_resolution">
+        <xs:restriction>
+            <xs:enumeration value="DAY"/>
+            <xs:enumeration value="HOUR"/>
+            <xs:enumeration value="MINUTE"/>
+            <xs:enumeration value="MONTH"/>
+            <xs:enumeration value="SECOND"/>
+            <xs:enumeration value="YEAR"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="enum_multiSelectMode">
+        <xs:restriction>
+            <xs:enumeration value="DEFAULT"/>
+            <xs:enumeration value="SIMPLE"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <!-- component groups -->
+    <xs:group name="allComponents">
+        <xs:choice>
+            <xs:element ref="button"/>
+            <xs:element ref="comboBox"/>
+            <xs:element ref="label"/>
+            <xs:element ref="panel"/>
+            <xs:element ref="progressBar"/>
+            <xs:element ref="horizontalSplitPanel"/>
+            <xs:element ref="verticalSplitPanel"/>
+            <xs:element ref="dateField"/>
+            <xs:element ref="table"/>
+            <xs:element ref="tabSheet"/>
+            <xs:element ref="textArea"/>
+            <xs:element ref="textField"/>
+            <xs:element ref="tree"/>
+            <xs:element ref="checkBox"/>
+            <xs:element ref="dateField"/>
+            <xs:element ref="popupDateField"/>
+            <xs:element ref="inlineDateField"/>
+        </xs:choice>
+    </xs:group>
+
+    <xs:group name="allContainers">
+        <xs:choice>
+            <xs:element ref="verticalLayout"/>
+            <xs:element ref="horizontalLayout"/>
+            <xs:element ref="gridLayout"/>
+            <xs:element ref="tabSheet"/>
+            <xs:element ref="include"/>
+        </xs:choice>
+    </xs:group>
+
+
+    <!-- element definitions -->
     <xs:element name="xaadin">
         <xs:complexType>
-            <xs:sequence>
-                <xs:element ref="horizontalLayout"/>
-            </xs:sequence>
+            <xs:group ref="allContainers"/>
             <xs:attribute ref="xsi:schemaLocation" use="required"/>
         </xs:complexType>
     </xs:element>
-    <xs:element name="horizontalLayout">
+
+    <xs:element name="include">
         <xs:complexType>
-            <xs:choice>
-                <xs:sequence>
-                    <xs:element ref="label"/>
-                    <xs:element ref="textField"/>
-                    <xs:element ref="button"/>
-                    <xs:element ref="comboBox"/>
-                    <xs:element ref="table"/>
-                    <xs:element ref="progressBar"/>
-                    <xs:element ref="textArea"/>
-                    <xs:element ref="panel"/>
-                    <xs:element ref="tabSheet"/>
-                    <xs:element ref="horizontalSplitPanel"/>
-                    <xs:element ref="verticalSplitPanel"/>
-                    <xs:element ref="horizontalLayout"/>
-                    <xs:element ref="dateField"/>
-                    <xs:element ref="inlineDateField"/>
-                </xs:sequence>
-                <xs:sequence>
-                    <xs:element ref="verticalLayout"/>
-                    <xs:element ref="gridLayout"/>
-                </xs:sequence>
-            </xs:choice>
-            <xs:attribute name="columnExpandRatio"/>
-            <xs:attribute name="id"/>
-            <xs:attribute name="spacing"/>
-            <xs:attribute name="width"/>
+            <xs:attribute name="src" use="required"/>
         </xs:complexType>
     </xs:element>
-    <xs:element name="label">
-        <xs:complexType>
-            <xs:attribute name="id" use="required"/>
-        </xs:complexType>
-    </xs:element>
-    <xs:element name="textField">
-        <xs:complexType>
-            <xs:attribute name="id" use="required"/>
-        </xs:complexType>
-    </xs:element>
-    <xs:element name="button">
-        <xs:complexType>
-            <xs:attribute name="id" use="required"/>
-        </xs:complexType>
-    </xs:element>
-    <xs:element name="comboBox">
-        <xs:complexType>
-            <xs:attribute name="id" use="required"/>
-        </xs:complexType>
-    </xs:element>
-    <xs:element name="table">
-        <xs:complexType>
-            <xs:attribute name="id" use="required"/>
-        </xs:complexType>
-    </xs:element>
-    <xs:element name="progressBar">
-        <xs:complexType>
-            <xs:attribute name="id" use="required"/>
-        </xs:complexType>
-    </xs:element>
-    <xs:element name="textArea">
-        <xs:complexType>
-            <xs:attribute name="id" use="required"/>
-        </xs:complexType>
-    </xs:element>
-    <xs:element name="panel">
-        <xs:complexType>
-            <xs:attribute name="id" use="required"/>
-        </xs:complexType>
-    </xs:element>
-    <xs:element name="tabSheet">
-        <xs:complexType>
-            <xs:attribute name="id" use="required"/>
-        </xs:complexType>
-    </xs:element>
-    <xs:element name="horizontalSplitPanel">
-        <xs:complexType>
-            <xs:attribute name="id" use="required"/>
-        </xs:complexType>
-    </xs:element>
-    <xs:element name="verticalSplitPanel">
-        <xs:complexType>
-            <xs:attribute name="id" use="required"/>
-        </xs:complexType>
-    </xs:element>
-    <xs:element name="verticalLayout">
-        <xs:complexType>
-            <xs:attribute name="id" use="required"/>
-        </xs:complexType>
-    </xs:element>
-    <xs:element name="gridLayout">
-        <xs:complexType>
-            <xs:attribute name="id" use="required"/>
-        </xs:complexType>
-    </xs:element>
-    <xs:element name="inlineDateField">
-        <xs:complexType>
-            <xs:attribute name="id" use="required"/>
-			<xs:attribute name="resolution"/>
-		</xs:complexType>
-    </xs:element>
-    <xs:element name="dateField">
-        <xs:complexType>
-            <xs:attribute name="id" use="required"/>
-			<xs:attribute name="resolution"/>
-		</xs:complexType>
-    </xs:element>
+
+    <xs:element name="horizontalLayout" type="class_horizontalLayout"/>
+    <xs:element name="verticalLayout" type="class_verticalLayout"/>
+    <xs:element name="gridLayout" type="class_gridLayoutType"/>
+
+    <xs:element name="label" type="class_label"/>
+    <xs:element name="textField" type="class_textField"/>
+    <xs:element name="checkBox" type="class_checkBox"/>
+    <xs:element name="comboBox" type="class_comboBox"/>
+    <xs:element name="panel" type="class_panel"/>
+    <xs:element name="button" type="class_button"/>
+    <xs:element name="table" type="class_table"/>
+    <xs:element name="dateField" type="class_dateField"/>
+    <xs:element name="popupDateField" type="class_popupDateField"/>
+    <xs:element name="inlineDateField" type="class_inlineDateField"/>
+    <xs:element name="tabSheet" type="class_tabSheet"/>
+    <xs:element name="progressBar" type="class_progressBar"/>
+    <xs:element name="textArea" type="class_textArea"/>
+    <xs:element name="tree" type="class_tree"/>
+
+    <xs:element name="horizontalSplitPanel" type="class_horizontalSplitPanel"/>
+    <xs:element name="verticalSplitPanel" type="class_verticalSplitPanel"/>
+
 </xs:schema>
