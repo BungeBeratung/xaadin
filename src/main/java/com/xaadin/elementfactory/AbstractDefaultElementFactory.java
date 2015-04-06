@@ -1,6 +1,5 @@
 package com.xaadin.elementfactory;
 
-import com.google.common.base.Strings;
 import com.vaadin.ui.Alignment;
 import com.vaadin.ui.Component;
 import com.xaadin.VisualTreeNode;
@@ -70,7 +69,7 @@ public abstract class AbstractDefaultElementFactory implements ElementFactory {
 	}
 
 	protected Alignment parseAlignment(String alignment) {
-		if (Strings.isNullOrEmpty(alignment)) {
+		if (alignment == null || alignment.isEmpty()) {
 			return Alignment.MIDDLE_LEFT;
 		}
 

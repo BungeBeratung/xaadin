@@ -9,9 +9,6 @@ import org.junit.Test;
 import static org.assertj.core.api.Assertions.assertThat;
 
 
-/**
- * Created by hej on 27.01.14.
- */
 public class ButtonElementFactoryTest {
 
     private ButtonElementFactory factory;

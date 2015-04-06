@@ -2,9 +2,6 @@ package com.xaadin;
 
 import com.vaadin.ui.*;
 
-/**
- * Created by Hendrik Jürgens
- */
 public class TestConstants {
 
     public static final Class[] SUPPORTED_COMPONENTS = new Class[]{

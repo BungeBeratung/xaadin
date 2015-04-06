@@ -12,9 +12,6 @@ import org.mockito.Mockito;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-/**
- * Created by Hendrik Jürgens on 27.01.14.
- */
 public class AbstractOrderedLayoutElementFactoryTest {
 
     private AbstractOrderedLayoutElementFactory factory;

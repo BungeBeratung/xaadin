@@ -1,6 +1,5 @@
 package com.xaadin.elementfactory;
 
-import com.google.common.base.Strings;
 import com.vaadin.ui.Button;
 import com.xaadin.VisualTreeNode;
 import org.slf4j.Logger;
@@ -15,7 +14,7 @@ public class ButtonElementFactory extends AbstractDefaultLayoutElementFactory {
 	public void processEvents(final VisualTreeNode child, final Object eventHandlerTarget) throws ElementFactoryException {
 		final String clickEventHandlerName = child.getAdditionalParameter("onClick", null);
 
-		if (!Strings.isNullOrEmpty(clickEventHandlerName)) {
+		if (clickEventHandlerName != null && !clickEventHandlerName.isEmpty()) {
 			final Method method = findMethodForName(eventHandlerTarget.getClass(), clickEventHandlerName, 2);
 			Button button = child.getComponent();
 			button.addClickListener(new Button.ClickListener() {

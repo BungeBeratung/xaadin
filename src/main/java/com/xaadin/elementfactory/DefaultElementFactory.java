@@ -25,5 +25,4 @@ public class DefaultElementFactory extends AbstractDefaultLayoutElementFactory {
 
 		return false;
 	}
-
 }

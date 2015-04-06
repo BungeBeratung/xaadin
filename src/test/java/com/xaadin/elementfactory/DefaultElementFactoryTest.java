@@ -6,9 +6,6 @@ import org.junit.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-/**
- * Created by Hendrik Jürgens on 27.01.14.
- */
 public class DefaultElementFactoryTest {
 
     private DefaultElementFactory factory;

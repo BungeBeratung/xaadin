@@ -1,9 +1,16 @@
 package com.xaadin;
 
-import com.google.common.base.Preconditions;
-import com.google.common.base.Strings;
 import com.vaadin.ui.ComponentContainer;
-import com.xaadin.elementfactory.*;
+import com.xaadin.elementfactory.AbstractOrderedLayoutElementFactory;
+import com.xaadin.elementfactory.ButtonElementFactory;
+import com.xaadin.elementfactory.DefaultElementFactory;
+import com.xaadin.elementfactory.ElementFactory;
+import com.xaadin.elementfactory.ElementFactoryException;
+import com.xaadin.elementfactory.GridLayoutElementFactory;
+import com.xaadin.elementfactory.MenuItemElementFactory;
+import com.xaadin.elementfactory.PanelElementFactory;
+import com.xaadin.elementfactory.SplitPanelElementFactory;
+import com.xaadin.elementfactory.TabSheetElementFactory;
 import org.jdom2.Attribute;
 import org.jdom2.Document;
 import org.jdom2.Element;
@@ -11,7 +18,12 @@ import org.jdom2.Namespace;
 import org.jdom2.input.SAXBuilder;
 import org.jdom2.input.sax.XMLReaders;
 
-import java.io.*;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.Reader;
 import java.net.MalformedURLException;
 import java.net.URISyntaxException;
 import java.net.URL;
@@ -100,7 +112,8 @@ public class Parser {
 	private VisualTreeNode parseVisualTreeInt(Element element, Object parentVisualObject, Object eventHandlerTarget, Object prevConstructedParent) throws ParserException {
 		String elementName = element.getName();
 		Namespace namespace = element.getNamespace();
-		Preconditions.checkNotNull(namespace, "No namespace given");
+		if (namespace == null)
+			throw new IllegalStateException("No namespace given");
 
 		if (namespace.equals(xaadinNamespace)) {
 			// parse include
@@ -187,7 +200,7 @@ public class Parser {
 
 	private VisualTreeNode parseInclude(Element element, Object eventHandlerTarget) throws ParserException {
 		String includeSrc = element.getAttributeValue("src", null, null);
-		if (Strings.isNullOrEmpty(includeSrc))
+		if (includeSrc == null || includeSrc.isEmpty())
 			throw new ParserException("found include node without a src attribute");
 
 		// build uri and parse subnode

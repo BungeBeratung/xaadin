@@ -1,21 +1,15 @@
 package com.xaadin.elementfactory;
 
-import com.google.common.annotations.VisibleForTesting;
-import com.google.common.base.Strings;
 import com.vaadin.ui.Alignment;
 import com.vaadin.ui.Component;
 import com.vaadin.ui.GridLayout;
 import com.xaadin.VisualTreeNode;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.StringTokenizer;
 
 public class GridLayoutElementFactory extends AbstractDefaultElementFactory {
-
-    final static Logger logger = LoggerFactory.getLogger(GridLayoutElementFactory.class);
 
     private int getIntFromVisualTreeNode(String parameterName, VisualTreeNode node) {
         try {
@@ -26,7 +20,7 @@ public class GridLayoutElementFactory extends AbstractDefaultElementFactory {
     }
 
     protected float[] parseExpandRatios(String ratios) throws ElementFactoryException {
-        if (Strings.isNullOrEmpty(ratios)) {
+        if (ratios == null || ratios.isEmpty()) {
             return new float[0];
         }
 
