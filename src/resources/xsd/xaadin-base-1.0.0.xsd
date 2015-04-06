@@ -84,6 +84,7 @@
             <xs:extension base="class_abstractComponent">
                 <xs:attribute name="validationVisible" type="xs:boolean"/>
                 <xs:attribute name="required" type="xs:boolean"/>
+				<xs:attribute name="invalidAllowed" type="xs:boolean"/>
             </xs:extension>
         </xs:complexContent>
     </xs:complexType>
