@@ -6,11 +6,11 @@ import com.vaadin.ui.HorizontalSplitPanel;
 import com.vaadin.ui.VerticalSplitPanel;
 import com.xaadin.VisualTreeNode;
 import com.xaadin.VisualTreeNodeImpl;
-import org.fest.assertions.data.Offset;
+import org.assertj.core.data.Offset;
 import org.junit.Before;
 import org.junit.Test;
 
-import static org.fest.assertions.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThat;
 
 /**
  * Created by Hendrik Jürgens on 27.01.14.

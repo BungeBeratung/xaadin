@@ -25,7 +25,6 @@ public class GridLayoutElementFactory extends AbstractDefaultElementFactory {
         }
     }
 
-    @VisibleForTesting
     protected float[] parseExpandRatios(String ratios) throws ElementFactoryException {
         if (Strings.isNullOrEmpty(ratios)) {
             return new float[0];

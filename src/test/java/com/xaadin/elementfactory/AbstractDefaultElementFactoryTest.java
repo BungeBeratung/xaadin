@@ -4,14 +4,14 @@ import com.vaadin.ui.Alignment;
 import com.vaadin.ui.Button;
 import com.xaadin.VisualTreeNode;
 import com.xaadin.VisualTreeNodeImpl;
-import org.fest.assertions.data.Offset;
+import org.assertj.core.data.Offset;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mockito;
 
 import java.lang.reflect.Method;
 
-import static org.fest.assertions.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThat;
 
 public class AbstractDefaultElementFactoryTest {
 
