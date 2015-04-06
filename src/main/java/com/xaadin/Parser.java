@@ -205,7 +205,26 @@ public class Parser {
 		return new Parser().parseVisualTree(parent, uri, eventHandlerTarget);
 	}
 
+	@SuppressWarnings("UnusedDeclaration")
+	public static VisualTreeNode parseInParent(ComponentContainer parent, InputStream inputStream, Object eventHandlerTarget) {
+		try (Reader streamReader = new InputStreamReader(inputStream)) {
+			return new Parser().parseVisualTree(parent, streamReader, eventHandlerTarget);
+		} catch (ParserException | IOException e) {
+			throw new RuntimeException(e);
+		}
+	}
+
+	@SuppressWarnings("UnusedDeclaration")
 	public static VisualTreeNode parse(URL url, Object eventHandlerTarget) {
 		return new Parser().parseVisualTree(null, url, eventHandlerTarget);
+	}
+
+	@SuppressWarnings("UnusedDeclaration")
+	public static VisualTreeNode parse(InputStream inputStream, Object eventHandlerTarget) {
+		try (Reader streamReader = new InputStreamReader(inputStream)) {
+			return new Parser().parseVisualTree(null, streamReader, eventHandlerTarget);
+		} catch (ParserException | IOException e) {
+			throw new RuntimeException(e);
+		}
 	}
 }
