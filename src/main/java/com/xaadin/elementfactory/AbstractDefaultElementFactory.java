@@ -132,4 +132,9 @@ public abstract class AbstractDefaultElementFactory implements ElementFactory {
 			return 0;
 		}
 	}
+
+	@Override
+	public void processEvents(VisualTreeNode child, Object eventHandlerTarget) throws ElementFactoryException {
+		// Override this method if you like to handle events.
+	}
 }

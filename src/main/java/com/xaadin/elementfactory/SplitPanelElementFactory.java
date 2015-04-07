@@ -37,16 +37,11 @@ public class SplitPanelElementFactory extends AbstractDefaultElementFactory {
                     + ". Attribute will be removed in further versions of xaadin. Please only use the attribute 'splitPosition'.");
         } else {
             spacerPosition = getFloatFromVisualTreeNode("splitPosition", parent);
-
         }
 
         if (Math.abs(spacerPosition) > 0.01f) {
 			panel.setSplitPosition(spacerPosition * 100.f, Sizeable.Unit.PERCENTAGE);
 		}
-	}
-
-	@Override
-	public void processEvents(VisualTreeNode child, Object eventHandlerTarget) throws ElementFactoryException {
 	}
 
 	@Override

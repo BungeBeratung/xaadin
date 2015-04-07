@@ -11,9 +11,6 @@ public class DefaultElementFactory extends AbstractDefaultLayoutElementFactory {
 		this.packageName = packageName;
 	}
 
-	public void processEvents(VisualTreeNode child, Object eventHandlerTarget) {
-	}
-
 	public boolean isClassSupportedForElementFactory(String classname) {
 		if (classname.startsWith(packageName)) {
 			try {

@@ -13,11 +13,7 @@ public class PanelElementFactory extends AbstractDefaultLayoutElementFactory {
 		panel.setContent((Component) child.getComponent());
 	}
 
-	public void processEvents(VisualTreeNode child, Object eventHandlerTarget) {
-	}
-
 	public boolean isClassSupportedForElementFactory(String classname) {
 		return Panel.class.getName().equals(classname);
 	}
-
 }

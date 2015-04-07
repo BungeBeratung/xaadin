@@ -14,10 +14,6 @@ public class TabSheetElementFactory extends AbstractDefaultLayoutElementFactory 
 	}
 
 	@Override
-	public void processEvents(VisualTreeNode child, Object eventHandlerTarget) throws ElementFactoryException {
-	}
-
-	@Override
 	public boolean isClassSupportedForElementFactory(String classname) {
 		return classname.equals(TabSheet.class.getName());
 	}

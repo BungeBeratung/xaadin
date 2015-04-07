@@ -116,9 +116,6 @@ public class GridLayoutElementFactory extends AbstractDefaultElementFactory {
 
     }
 
-    public void processEvents(VisualTreeNode child, Object eventHandlerTarget) {
-    }
-
     public boolean isClassSupportedForElementFactory(String classname) {
         return classname.equals(GridLayout.class.getName());
     }
