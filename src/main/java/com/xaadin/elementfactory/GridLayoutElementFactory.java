@@ -6,6 +6,7 @@ import com.vaadin.ui.GridLayout;
 import com.xaadin.VisualTreeNode;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.StringTokenizer;
 
@@ -19,25 +20,22 @@ public class GridLayoutElementFactory extends AbstractDefaultElementFactory {
         }
     }
 
-    protected float[] parseExpandRatios(String ratios) throws ElementFactoryException {
+    protected List<Float> parseExpandRatios(String ratios) throws ElementFactoryException {
         if (ratios == null || ratios.isEmpty()) {
-            return new float[0];
-        }
+            return Collections.emptyList();
+		}
 
-        StringTokenizer tokenizer = new StringTokenizer(ratios, ",");
-        List<String> tokens = new ArrayList<>();
+        final StringTokenizer tokenizer = new StringTokenizer(ratios, ",");
+        List<Float> tokens = new ArrayList<>();
         while (tokenizer.hasMoreElements()) {
-            tokens.add(tokenizer.nextToken());
-        }
-        float[] result = new float[tokens.size()];
-        for (int i = 0; i < tokens.size(); i++) {
-            try {
-                result[i] = Float.parseFloat(tokens.get(i));
+			final String token = tokenizer.nextToken();
+			try {
+				tokens.add(Float.parseFloat(token));
             } catch (NumberFormatException e) {
-                throw new ElementFactoryException("invalid tken or expandRatio: '" + ratios + "' invalid token: '" + tokens.get(i) + "'", e);
+                throw new ElementFactoryException("invalid token or expandRatio: '" + ratios + "' invalid token: '" + token + "'", e);
             }
         }
-        return result;
+        return tokens;
     }
 
     public void addComponentToParent(VisualTreeNode parent, VisualTreeNode child) throws ElementFactoryException {
@@ -91,8 +89,8 @@ public class GridLayoutElementFactory extends AbstractDefaultElementFactory {
 
         Alignment alignment = parseAlignment(child.getAdditionalParameter("alignment", ""));
 
-        float[] rowExpandRatios = parseExpandRatios(parent.getAdditionalParameter("rowExpandRatio", ""));
-        float[] columnExpandRatios = parseExpandRatios(parent.getAdditionalParameter("columnExpandRatio", ""));
+        List<Float> rowExpandRatios = parseExpandRatios(parent.getAdditionalParameter("rowExpandRatio", ""));
+		List<Float> columnExpandRatios = parseExpandRatios(parent.getAdditionalParameter("columnExpandRatio", ""));
 
         if ((row + (rowSpan - 1)) >= gridLayout.getRows())
             gridLayout.setRows(row + (rowSpan - 1) + 1);
@@ -107,11 +105,11 @@ public class GridLayoutElementFactory extends AbstractDefaultElementFactory {
         }
         gridLayout.setComponentAlignment(component, alignment);
 
-        if (rowExpandRatios.length > row) {
-            gridLayout.setRowExpandRatio(row, rowExpandRatios[row]);
+        if (rowExpandRatios.size() > row) {
+            gridLayout.setRowExpandRatio(row, rowExpandRatios.get(row));
         }
-        if (columnExpandRatios.length > col) {
-            gridLayout.setColumnExpandRatio(col, columnExpandRatios[col]);
+        if (columnExpandRatios.size() > col) {
+            gridLayout.setColumnExpandRatio(col, columnExpandRatios.get(col));
         }
 
     }

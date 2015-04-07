@@ -8,6 +8,8 @@ import org.junit.Before;
 import org.junit.Ignore;
 import org.junit.Test;
 
+import java.util.List;
+
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class GridLayoutElementFactoryTest {
@@ -21,14 +23,14 @@ public class GridLayoutElementFactoryTest {
 
     @Test
     public void testParseExpandRatios() throws Exception {
-        float[] expandRatios = factory.parseExpandRatios("0.1,0.2,0.3, 0.4,           0.5");
-        assertThat(expandRatios).isEqualTo(new float[]{0.1f, 0.2f, 0.3f, 0.4f, 0.5f});
+        List<Float> expandRatios = factory.parseExpandRatios("0.1,0.2,0.3, 0.4,           0.5");
+        assertThat(expandRatios).contains(0.1f, 0.2f, 0.3f, 0.4f, 0.5f);
     }
 
     @Test
     public void testParseExpandRatiosEmpty() throws Exception {
-        float[] expandRatios = factory.parseExpandRatios("");
-        assertThat(expandRatios).isEqualTo(new float[]{});
+		List<Float> expandRatios = factory.parseExpandRatios("");
+        assertThat(expandRatios).isEmpty();
     }
 
     @Test(expected = ElementFactoryException.class)
