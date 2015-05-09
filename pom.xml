@@ -8,6 +8,46 @@
 	<version>0.1.2-SNAPSHOT</version>
 	<packaging>jar</packaging>
 
+	<name>Xaadin</name>
+	<description>Please refer to https://github.com/xaadin/xaadin.</description>
+	<url>https://github.com/xaadin/xaadin</url>
+	<inceptionYear>2014</inceptionYear>
+
+	<organization>
+		<name>Xaadin Project</name>
+		<url>http://www.xaadin.com/</url>
+	</organization>
+
+	<issueManagement>
+		<url>https://github.com/xaadin/xaadin/issues</url>
+		<system>GitHub Issues</system>
+	</issueManagement>
+
+	<contributors>
+		<contributor>
+			<name>Hendrik Jürgens</name>
+		</contributor>
+		<contributor>
+			<name>Sven Bunge</name>
+		</contributor>
+	</contributors>
+
+	<licenses>
+		<license>
+			<name>Apache License, Version 2.0</name>
+			<url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+			<distribution>repo</distribution>
+			<comments>A business-friendly OSS license</comments>
+		</license>
+	</licenses>
+
+	<scm>
+		<connection>scm:git:git@github.com:xaadin/xaadin.git</connection>
+		<developerConnection>scm:git:git@github.com:xaadin/xaadin.git</developerConnection>
+		<url>git@github.com:xaadin/xaadin.git</url>
+		<tag>HEAD</tag>
+	</scm>
+
 	<properties>
 		<!-- Project settings -->
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -28,21 +68,8 @@
 	</properties>
 
 	<prerequisites>
-		<maven>3.0.5</maven>
+		<maven>3.2</maven>
 	</prerequisites>
-
-	<organization>
-		<url>http://www.xaadin.com/</url>
-	</organization>
-
-	<contributors>
-		<contributor>
-			<name>Hendrik Jürgens</name>
-		</contributor>
-		<contributor>
-			<name>Sven Bunge</name>
-		</contributor>
-	</contributors>
 
 	<build>
 		<defaultGoal>clean install</defaultGoal>
@@ -87,7 +114,7 @@
 						<configuration>
 							<rules>
 								<requireMavenVersion>
-									<version>3.0.5</version>
+									<version>3.2</version>
 								</requireMavenVersion>
 								<requireJavaVersion>
 									<version>${java.version}</version>
@@ -111,15 +138,15 @@
 			<plugins>
 				<plugin>
 					<artifactId>maven-dependency-plugin</artifactId>
-					<version>2.8</version>
+					<version>2.10</version>
 				</plugin>
 				<plugin>
 					<artifactId>maven-deploy-plugin</artifactId>
-					<version>2.8.1</version>
+					<version>2.8.2</version>
 				</plugin>
 				<plugin>
 					<artifactId>maven-install-plugin</artifactId>
-					<version>2.5.1</version>
+					<version>2.5.2</version>
 				</plugin>
 				<plugin>
 					<artifactId>maven-jar-plugin</artifactId>
@@ -136,7 +163,7 @@
 				</plugin>
 				<plugin>
 					<artifactId>maven-release-plugin</artifactId>
-					<version>2.5.1</version>
+					<version>2.5.2</version>
 				</plugin>
 				<plugin>
 					<artifactId>maven-resources-plugin</artifactId>
@@ -167,24 +194,6 @@
 				</exclusion>
 			</exclusions>
 		</dependency>
-<!--		<dependency>
-			<groupId>com.vaadin</groupId>
-			<artifactId>vaadin-client-compiled</artifactId>
-			<version>${vaadin.version}</version>
-			<scope>test</scope>
-		</dependency>
-		<dependency>
-			<groupId>com.vaadin</groupId>
-			<artifactId>vaadin-client</artifactId>
-			<version>${vaadin.version}</version>
-			<scope>test</scope>
-		</dependency>
-		<dependency>
-			<groupId>com.vaadin</groupId>
-			<artifactId>vaadin-themes</artifactId>
-			<version>${vaadin.version}</version>
-			<scope>test</scope>
-		</dependency>-->
 
 		<dependency>
 			<groupId>org.jdom</groupId>
@@ -254,4 +263,14 @@
 		</dependency>
 	</dependencies>
 
+	<distributionManagement>
+		<snapshotRepository>
+			<id>ossrh</id>
+			<url>https://oss.sonatype.org/content/repositories/snapshots</url>
+		</snapshotRepository>
+		<repository>
+			<id>ossrh</id>
+			<url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
+		</repository>
+	</distributionManagement>
 </project>
