@@ -5,3 +5,8 @@ cache:
   - $HOME/.m2
 jdk:
 - openjdk7
+
+install: mvn clean install -DskipTests=true -q
+
+# Run unit and integration tests
+script: mvn verify -B -q
