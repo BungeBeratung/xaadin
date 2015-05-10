@@ -4,7 +4,7 @@
 
 	<groupId>com.xaadin</groupId>
 	<artifactId>xaadin</artifactId>
-	<version>0.2</version>
+	<version>0.3-SNAPSHOT</version>
 	<packaging>jar</packaging>
 
 	<name>Xaadin</name>
@@ -46,7 +46,7 @@
 		<connection>scm:git:git@github.com:xaadin/xaadin.git</connection>
 		<developerConnection>scm:git:git@github.com:xaadin/xaadin.git</developerConnection>
 		<url>git@github.com:xaadin/xaadin.git</url>
-		<tag>xaadin-0.2</tag>
+		<tag>HEAD</tag>
 	</scm>
 
 	<properties>
