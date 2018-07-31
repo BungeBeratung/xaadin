@@ -1,3 +1,7 @@
+**This project is deprecated and archived, feel free to fork and pursue this XML based markup language for vaadin components.**
+
+-----
+
 xaadin 0.2
 ==========
 
