@@ -3,8 +3,8 @@ package com.xaadin.elementfactory;
 import com.vaadin.ui.Button;
 import com.xaadin.VisualTreeNode;
 import com.xaadin.VisualTreeNodeImpl;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -13,7 +13,7 @@ public class ButtonElementFactoryTest {
 
     private ButtonElementFactory factory;
 
-    @Before
+    @BeforeEach
     public void setUp() throws Exception {
         factory = new ButtonElementFactory();
     }

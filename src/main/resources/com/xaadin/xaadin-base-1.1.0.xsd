@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified"
-           targetNamespace="http://xaadin.com/base/1.0.0"
-           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<xs:schema xmlns="http://xaadin.com/base/1.0.0"
+		   xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified"
+		   targetNamespace="http://xaadin.com/base/1.0.0"
+		   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+
+	<xs:import namespace="http://www.w3.org/XML/1998/namespace"/>
 
     <!-- type hierarchy -->
     <xs:complexType name="xaadin_default_attributes">
@@ -323,7 +326,7 @@
         </xs:complexContent>
     </xs:complexType>
 
-    <xs:complexType name="class_table">
+    <xs:complexType name="class_grid">
         <xs:complexContent>
             <xs:extension base="class_abstractSelect">
                 <xs:attribute name="selectable" type="xs:boolean"/>
@@ -397,7 +400,7 @@
             <xs:element ref="horizontalSplitPanel"/>
             <xs:element ref="verticalSplitPanel"/>
             <xs:element ref="dateField"/>
-            <xs:element ref="table"/>
+            <xs:element ref="grid"/>
             <xs:element ref="tabSheet"/>
             <xs:element ref="textArea"/>
             <xs:element ref="textField"/>
@@ -446,7 +449,7 @@
     <xs:element name="comboBox" type="class_comboBox"/>
     <xs:element name="panel" type="class_panel"/>
     <xs:element name="button" type="class_button"/>
-    <xs:element name="table" type="class_table"/>
+    <xs:element name="grid" type="class_grid"/>
     <xs:element name="dateField" type="class_dateField"/>
     <xs:element name="popupDateField" type="class_popupDateField"/>
     <xs:element name="inlineDateField" type="class_inlineDateField"/>

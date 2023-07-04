@@ -9,7 +9,7 @@ public class TestConstants {
             TextField.class,
             Button.class,
             ComboBox.class,
-            Table.class,
+            Grid.class,
             ProgressBar.class,
             TextArea.class,
             Panel.class,

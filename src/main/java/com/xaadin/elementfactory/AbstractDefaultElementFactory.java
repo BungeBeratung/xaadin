@@ -1,5 +1,6 @@
 package com.xaadin.elementfactory;
 
+import com.vaadin.shared.ui.datefield.DateTimeResolution;
 import com.vaadin.ui.Alignment;
 import com.vaadin.ui.Component;
 import com.xaadin.VisualTreeNode;
@@ -106,11 +107,12 @@ public abstract class AbstractDefaultElementFactory implements ElementFactory {
 		if (method == null) {
 			throw new ElementFactoryException("could not find setter for attribute " + property + " on target " + target.getClass().getName());
 		}
-		if (method.getParameterTypes()[0].equals(int.class) || method.getParameterTypes()[0].equals(Integer.class)) {
+		Class<?> parameterType = method.getParameterTypes()[0];
+		if (parameterType.equals(int.class) || parameterType.equals(Integer.class)) {
 			invokeMethod(method, target, Integer.parseInt(value));
-		} else if (method.getParameterTypes()[0].equals(double.class) || method.getParameterTypes()[0].equals(Double.class)) {
+		} else if (parameterType.equals(double.class) || parameterType.equals(Double.class)) {
 			invokeMethod(method, target, Double.parseDouble(value));
-		} else if (method.getParameterTypes()[0].equals(boolean.class) || method.getParameterTypes()[0].equals(Boolean.class)) {
+		} else if (parameterType.equals(boolean.class) || parameterType.equals(Boolean.class)) {
 			invokeMethod(method, target, Boolean.parseBoolean(value));
         } else if (method.getParameterTypes()[0].isEnum()) {
             Object[] enumValues = method.getParameterTypes()[0].getEnumConstants();
@@ -121,6 +123,14 @@ public abstract class AbstractDefaultElementFactory implements ElementFactory {
                 }
             }
         } else {
+			// Try the dynamic enums first
+			try {
+				DateTimeResolution dtr = DateTimeResolution.valueOf(value);
+				invokeMethod(method, target, dtr);
+				return;
+			} catch (IllegalArgumentException ignored) {}
+
+			// Default / Fallback - Direct call
             invokeMethod(method, target, value);
 		}
 	}

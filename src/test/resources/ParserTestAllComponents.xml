@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xaadin xmlns="http://xaadin.com/base/1.0.0"
-				schemaLocation="http://xaadin.com/base/1.0.0 http://xaadin.com/xsd/xaadin-base-1.0.0.xsd">
+<xaadin xmlns="http://xaadin.com/base/1.1.0"
+				schemaLocation="http://xaadin.com/base/1.1.0 http://xaadin.com/xsd/xaadin-base-1.1.0.xsd">
 
 
     <horizontalLayout id="layout0" width="100%" spacing="true" expandRatio="0.0, 1.0">
-        <!-- Components -->
+        <!-- Components (id = Classname!! -->
 		<label id="label"/>
 		<textField id="textField"/>
 		<button id="button"/>
-        <comboBox id="comboBox"/>xx
-        <table id="table"/>
+        <comboBox id="comboBox"/>
+        <grid id="grid"/>
 		<progressBar id="progressBar"/>
 		<textArea id="textArea"/>
 		<panel id="panel"/>

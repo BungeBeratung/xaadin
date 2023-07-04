@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xaadin xmlns="http://xaadin.com/base/1.0.0"
-		schemaLocation="http://xaadin.com/base/1.0.0 http://xaadin.com/xsd/xaadin-base-1.0.0.xsd">
+<xaadin xmlns="http://xaadin.com/base/1.1.0"
+		schemaLocation="http://xaadin.com/base/1.1.0 http://xaadin.com/xsd/xaadin-base-1.1.0.xsd">
 
     <horizontalLayout id="" width="100%" spacing="true" expandRatio="0.0, 1.0">
-        <dateField id="dateFieldSecond" resolution="SECOND"/>
-        <dateField id="dateFieldMonth" resolution="MONTH"/>
+        <dateTimeField id="dateFieldMinute" resolution="MINUTE"/>
+        <dateTimeField id="dateFieldMonth" resolution="MONTH"/>
 	</horizontalLayout>
 </xaadin>

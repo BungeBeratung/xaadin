@@ -1,8 +1,6 @@
 package com.xaadin.elementfactory;
 
 
-import com.xaadin.VisualTreeNode;
-
 public class DefaultElementFactory extends AbstractDefaultLayoutElementFactory {
 
 	private String packageName;
@@ -14,8 +12,8 @@ public class DefaultElementFactory extends AbstractDefaultLayoutElementFactory {
 	public boolean isClassSupportedForElementFactory(String classname) {
 		if (classname.startsWith(packageName)) {
 			try {
-				Class.forName(classname);
-				return true;
+				Class<?> aClass = Class.forName(classname);
+				return aClass != null;
 			} catch (ClassNotFoundException ignored) {
 			}
 		}

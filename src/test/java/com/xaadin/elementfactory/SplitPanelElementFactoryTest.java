@@ -7,8 +7,9 @@ import com.vaadin.ui.VerticalSplitPanel;
 import com.xaadin.VisualTreeNode;
 import com.xaadin.VisualTreeNodeImpl;
 import org.assertj.core.data.Offset;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -16,7 +17,7 @@ public class SplitPanelElementFactoryTest {
 
     private SplitPanelElementFactory factory;
 
-    @Before
+    @BeforeEach
     public void setUp() {
         factory = new SplitPanelElementFactory();
     }
@@ -56,7 +57,7 @@ public class SplitPanelElementFactoryTest {
         assertThat(panel.getSplitPosition()).isEqualTo(0.65f * 100.f, Offset.offset(0.01f));
     }
 
-    @Test(expected = ElementFactoryException.class)
+    @Test
     public void testAddComponentToParentMoreThanTwoComponents() throws Exception {
         Button btn1 = new Button();
         Button btn2 = new Button();
@@ -67,7 +68,7 @@ public class SplitPanelElementFactoryTest {
 
         factory.addComponentToParent(splitPanelVisualTreeNode, new VisualTreeNodeImpl(btn1));
         factory.addComponentToParent(splitPanelVisualTreeNode, new VisualTreeNodeImpl(btn2));
-        factory.addComponentToParent(splitPanelVisualTreeNode, new VisualTreeNodeImpl(btn3));
+		Assertions.assertThrows(ElementFactoryException.class, () -> factory.addComponentToParent(splitPanelVisualTreeNode, new VisualTreeNodeImpl(btn3)));
     }
 
 

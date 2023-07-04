@@ -94,11 +94,11 @@ public class Parser {
 	private Namespace getDefaultXaadinNamespace(Element element) {
 		List<Namespace> namespaceList = element.getNamespacesInScope();
 		for (Namespace namespace : namespaceList) {
-			if (namespace.getURI().equalsIgnoreCase(Constants.XAADIN_NAMESPACE_1_0_0)) {
+			if (namespace.getURI().equalsIgnoreCase(Constants.XAADIN_NAMESPACE_1_1_0)) {
 				return namespace;
 			}
 		}
-		throw new RuntimeException("No Namespace " + Constants.XAADIN_NAMESPACE_1_0_0 + " found!");
+		throw new RuntimeException("No Namespace " + Constants.XAADIN_NAMESPACE_1_1_0 + " found!");
 	}
 
 	private ElementFactory getElementFactoryForElement(String fullClassName) {

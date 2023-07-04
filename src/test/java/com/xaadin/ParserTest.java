@@ -1,13 +1,16 @@
 package com.xaadin;
 
-import com.vaadin.shared.ui.datefield.Resolution;
+import com.vaadin.shared.ui.datefield.DateResolution;
+import com.vaadin.shared.ui.datefield.DateTimeResolution;
 import com.vaadin.ui.Component;
 import com.vaadin.ui.DateField;
-import org.junit.Test;
+import com.vaadin.ui.DateTimeField;
+import org.junit.jupiter.api.Test;
 
 import java.net.URL;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class ParserTest {
 
@@ -20,10 +23,11 @@ public class ParserTest {
 		VisualTreeNode visualTreeNode = Parser.parse(url, null);
 
 		for (Class clazz : TestConstants.SUPPORTED_COMPONENTS) {
+			System.out.println(clazz);
 			String className = clazz.getSimpleName().substring(0, 1).toLowerCase() + clazz.getSimpleName().substring(1);
 			Component component = visualTreeNode.findComponentById(className);
-
-			assertThat(component).isOfAnyClassIn(clazz);
+			assertNotNull(component, "Want " + clazz.getCanonicalName());
+			assertEquals(component.getClass(), clazz);
 		}
 	}
 
@@ -32,9 +36,9 @@ public class ParserTest {
         URL url = ClassLoader.getSystemResource(PARSER_TEST_DYNAMIC_ENUM);
         VisualTreeNode visualTreeNode = Parser.parse(url, null);
 
-        DateField fieldSecond = visualTreeNode.findComponentById("dateFieldSecond");
-        DateField fieldMonth = visualTreeNode.findComponentById("dateFieldMonth");
-        assertThat(fieldSecond.getResolution()).isEqualTo(Resolution.SECOND);
-        assertThat(fieldMonth.getResolution()).isEqualTo(Resolution.MONTH);
+        DateTimeField fieldMinute = visualTreeNode.findComponentById("dateFieldMinute");
+		DateTimeField fieldMonth = visualTreeNode.findComponentById("dateFieldMonth");
+		assertThat(fieldMinute.getResolution()).isEqualTo(DateTimeResolution.MINUTE);
+        assertThat(fieldMonth.getResolution()).isEqualTo(DateTimeResolution.MONTH);
     }
 }

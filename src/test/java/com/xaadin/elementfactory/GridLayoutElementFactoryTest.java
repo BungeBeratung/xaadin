@@ -4,9 +4,10 @@ import com.vaadin.ui.Button;
 import com.vaadin.ui.GridLayout;
 import com.xaadin.VisualTreeNode;
 import com.xaadin.VisualTreeNodeImpl;
-import org.junit.Before;
-import org.junit.Ignore;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Disabled;
+import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
@@ -16,7 +17,7 @@ public class GridLayoutElementFactoryTest {
 
     private GridLayoutElementFactory factory;
 
-    @Before
+    @BeforeEach
     public void setUp() throws Exception {
         factory = new GridLayoutElementFactory();
     }
@@ -33,9 +34,9 @@ public class GridLayoutElementFactoryTest {
         assertThat(expandRatios).isEmpty();
     }
 
-    @Test(expected = ElementFactoryException.class)
+    @Test
     public void testParseExpandRatiosInvalid() throws Exception {
-        factory.parseExpandRatios("0.1, 0.2, asds");
+        Assertions.assertThrows(ElementFactoryException.class, () -> factory.parseExpandRatios("0.1, 0.2, asds"));
     }
 
     @Test
@@ -78,7 +79,7 @@ public class GridLayoutElementFactoryTest {
     }
 
     @Test
-    @Ignore("TODO we need to fix this matter somehow... needs more thinking")
+    @Disabled("TODO we need to fix this matter somehow... needs more thinking")
     public void testAddComponentToParentRowspan() throws Exception {
         GridLayout layout = new GridLayout();
         layout.setColumns(2);

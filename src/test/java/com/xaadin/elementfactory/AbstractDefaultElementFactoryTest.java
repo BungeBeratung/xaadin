@@ -5,8 +5,9 @@ import com.vaadin.ui.Button;
 import com.xaadin.VisualTreeNode;
 import com.xaadin.VisualTreeNodeImpl;
 import org.assertj.core.data.Offset;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 
 import java.lang.reflect.Method;
@@ -17,7 +18,7 @@ public class AbstractDefaultElementFactoryTest {
 
 	private AbstractDefaultElementFactory factory;
 
-	@Before
+	@BeforeEach
 	public void setUp() {
 		factory = Mockito.mock(AbstractDefaultElementFactory.class, Mockito.CALLS_REAL_METHODS);
 	}
@@ -29,10 +30,9 @@ public class AbstractDefaultElementFactoryTest {
 		assertThat(o).isOfAnyClassIn(Button.class);
 	}
 
-	@Test(expected = ElementFactoryException.class)
+	@Test
 	public void testCreateClassNotFound() throws Exception {
-		factory.createClass(null, Button.class.getSimpleName());
-
+		Assertions.assertThrows(ElementFactoryException.class, () -> factory.createClass(null, Button.class.getSimpleName()));
 	}
 
 	@Test

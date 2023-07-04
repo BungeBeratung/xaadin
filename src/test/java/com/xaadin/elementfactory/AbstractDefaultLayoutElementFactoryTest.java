@@ -4,8 +4,8 @@ import com.vaadin.ui.Alignment;
 import com.vaadin.ui.Button;
 import com.vaadin.ui.HorizontalLayout;
 import com.xaadin.VisualTreeNodeImpl;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -17,7 +17,7 @@ public class AbstractDefaultLayoutElementFactoryTest {
 
     private AbstractDefaultLayoutElementFactory factory;
 
-    @Before
+    @BeforeEach
     public void setUp() throws Exception {
         factory = Mockito.mock(AbstractDefaultLayoutElementFactory.class, Mockito.CALLS_REAL_METHODS);
     }
